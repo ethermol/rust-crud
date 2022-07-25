@@ -1,0 +1,13 @@
+[package]
+name = "delete_user"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+lambda_http = "0.6.0"
+lambda_runtime = "0.6.0"
+serde = "1.0.140"
+serde_json = "1.0.82"
+tokio = "1.20.0"

@@ -1,0 +1,38 @@
+name: rust-crud-pipeline
+
+on:
+  push:
+    branches: [ master ]
+#   paths:
+#       - 'rust_crud/**'
+#       - '.github/workflows/rust-crud-pipeline.yml'
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: .
+    steps:
+    - uses: actions/checkout@v2
+    - name: Add target
+      run: rustup target add x86_64-unknown-linux-musl
+    - name: Build RUST functions
+      run: python3 rust_build.py
+    - name: Configure AWS Credentials  
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }} 
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: eu-central-1
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+      with:
+        cli_config_credentials_token: ${{ secrets.TF_API_KEY }}
+    - name: Terraform init
+      run: terraform init
+    - name: Terraform apply
+      run: terraform apply -auto-approve
