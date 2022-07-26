@@ -13,10 +13,10 @@ terraform {
   required_version = "~> 1.0"
 
   cloud {
-    organization = "mirch"
+    organization = "elft"
 
     workspaces {
-      name = "rust-crud"
+      name = "gh-actions"
     }
   }
 }
