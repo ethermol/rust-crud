@@ -7,5 +7,6 @@ Revived my github account to get hands-on experience with aws, github workflows 
 - git-hub needs a TF-KEY in order to get access to the terraform cloud account.
 - terraform needs AWS-credentials in order to create infrastructure in the target account (AWS_ACCESS_KEY_ID && AWS_SECRET_ACCESS_KEY).
 - Changed AWS-credentials within TF from terraform- to environment- . . . 
+- Added AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY to github. NOT SURE WHY THIS SHOULD BE NEEDED
 - on the other hand it is great that this can be tried out for free.
 
